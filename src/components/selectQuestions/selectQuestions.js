@@ -5,40 +5,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
-import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import { withStyles } from "@material-ui/core/styles";
-
-const Tooltip = styled.p`
-  font-size: 0.75em;
-  margin: 0 0 0 1em;
-  color: red;
-  font-family: "Inter", sans-serif;
-`;
-
-const styledBy = (property, mapping) => (props) => mapping[props[property]];
-
-const styles = {
-  root: {
-    background: styledBy("color", {
-      default: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-      blue: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
-    }),
-    borderRadius: 3,
-    border: 0,
-    color: "white",
-    height: 48,
-    padding: "0 30px",
-    boxShadow: styledBy("color", {
-      default: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-      blue: "0 3px 5px 2px rgba(33, 203, 243, .3)",
-    }),
-  },
-};
-
-const StyledButton = withStyles(styles)(({ classes, color, ...other }) => (
-  <Button className={classes.root} {...other} />
-));
+import { Tooltip } from "../styled/Styled";
 
 const SelectQuestions = (props) => {
   const { quizData } = props;
@@ -65,12 +32,13 @@ const SelectQuestions = (props) => {
   const renderResult = (item) => {
     if (formReady) {
       if (answer[item.name] === item.answer) {
-        return (
-          <div className="select__answer select__answer--right">Верно</div>
-        );
+        return <Tooltip correct>Верно</Tooltip>;
       }
-
-      return <Tooltip>Неверно, правильный ответ - {item.answer}</Tooltip>;
+      return (
+        <Tooltip>
+          Неверно, правильный ответ - <Tooltip correct>{item.answer}</Tooltip>
+        </Tooltip>
+      );
     }
   };
 
@@ -80,21 +48,14 @@ const SelectQuestions = (props) => {
   };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        paddingTop: "1rem",
-      }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="form selectForm" onSubmit={handleSubmit(onSubmit)}>
       {quizData.map((item, index) => {
         return (
           <div
             key={index}
             style={{
               display: "flex",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               alignItems: "center",
               marginBottom: "5px",
               flexWrap: "wrap",
@@ -157,9 +118,8 @@ const SelectQuestions = (props) => {
       >
         Сбросить
       </button>
-      <StyledButton color={"default"} type="submit">
-        Проверить
-      </StyledButton>
+      <button type="submit">Проверить</button>
+      {errors.errorMessage?.message}
     </form>
   );
 };

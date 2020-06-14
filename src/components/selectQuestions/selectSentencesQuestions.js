@@ -5,6 +5,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
+import { Tooltip } from "../styled/Styled";
 
 const SelectSentencesQuestions = (props) => {
   const { quizData } = props;
@@ -31,13 +32,12 @@ const SelectSentencesQuestions = (props) => {
   const renderResult = (item) => {
     if (formReady) {
       if (answer[item.name] === item.answer) {
-        return <p>Верно</p>;
+        return <Tooltip correct>Верно</Tooltip>;
       }
-
       return (
-        <p style={{ margin: "0px 10px" }}>
-          Не Верно, правильный ответ - {item.answer}
-        </p>
+        <Tooltip>
+          Неверно, правильный ответ - <Tooltip correct>{item.answer}</Tooltip>
+        </Tooltip>
       );
     }
   };
@@ -72,9 +72,7 @@ const SelectSentencesQuestions = (props) => {
             </p>
             <div
               style={{
-                display: "flex",
-                flex: "1",
-                justifyContent: "space-between",
+                textAlign: "left",
               }}
             >
               <span
@@ -83,7 +81,11 @@ const SelectSentencesQuestions = (props) => {
                   textAlign: "left",
                 }}
               >
-                {item.beforeSelect ? item.beforeSelect : null}
+                {item.beforeSelect ? (
+                  <div className="dialog dialog__before">
+                    {item.beforeSelect}
+                  </div>
+                ) : null}
                 <FormControl
                   className={classes.formControl}
                   error={Boolean(errors[item.name])}
@@ -97,9 +99,6 @@ const SelectSentencesQuestions = (props) => {
                         })}
                         defaultValue=""
                       >
-                        <MenuItem value="" disabled="disabled">
-                          Select answer
-                        </MenuItem>
                         {item.options.map((elem, index) => {
                           return (
                             <MenuItem key={index} value={elem}>
@@ -119,17 +118,14 @@ const SelectSentencesQuestions = (props) => {
                     {errors.wordlevel && errors.wordlevel.message}
                   </FormHelperText>
                 </FormControl>
-                {item.afterSelect ? item.afterSelect : null}
+                {item.afterSelect ? (
+                  <div className="dialog dialog__after">{item.afterSelect}</div>
+                ) : null}
               </span>
               {errors[item.name] && (
-                <p
-                  style={{
-                    margin: "0px 10px",
-                    width: "170px",
-                  }}
-                >
-                  Need select answer
-                </p>
+                <div className="answer__tooltip">
+                  Выберите ответ ({item.name})
+                </div>
               )}
               {renderResult(item)}
             </div>

@@ -4,6 +4,7 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
+import { Tooltip } from "../styled/Styled";
 
 const InputSentencesQuestions = (props) => {
   const { quizData } = props;
@@ -33,13 +34,13 @@ const InputSentencesQuestions = (props) => {
         answer[item.name].toString().toLowerCase().trim() ===
         item.answer.toString().toLowerCase().trim()
       ) {
-        return <p style={{ margin: "0px 10px" }}>Верно</p>;
+        return <Tooltip correct>Верно</Tooltip>;
       }
 
       return (
-        <p style={{ margin: "0px 10px" }}>
-          Не Верно, правильный ответ - {item.answer}
-        </p>
+        <Tooltip>
+          Неверно, правильный ответ - <Tooltip correct>{item.answer}</Tooltip>
+        </Tooltip>
       );
     }
   };
@@ -50,14 +51,7 @@ const InputSentencesQuestions = (props) => {
   };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="form inputForm" onSubmit={handleSubmit(onSubmit)}>
       {quizData.map((item, index) => {
         return (
           <div
@@ -75,13 +69,11 @@ const InputSentencesQuestions = (props) => {
                 margin: "0px 10px",
               }}
             >
-              {index + 1}
+              {/* {index + 1} */}
             </p>
             <div
               style={{
-                display: "flex",
-                flex: "1",
-                justifyContent: "space-between",
+                textAlign: "left",
               }}
             >
               <span
@@ -90,7 +82,16 @@ const InputSentencesQuestions = (props) => {
                   textAlign: "left",
                 }}
               >
-                {item.beforeSelect ? item.beforeSelect : null}
+                {item.beforePhrase
+                  ? item.beforePhrase.map((item) => (
+                      <div className="dialog dialog__phrase">{item}</div>
+                    ))
+                  : null}
+                {item.beforeSelect ? (
+                  <div className="dialog dialog__before">
+                    {item.beforeSelect}
+                  </div>
+                ) : null}
                 <FormControl
                   className={classes.formControl}
                   error={Boolean(errors[item.name])}
@@ -117,10 +118,19 @@ const InputSentencesQuestions = (props) => {
                     {errors.wordlevel && errors.wordlevel.message}
                   </FormHelperText>
                 </FormControl>{" "}
-                {item.afterSelect ? item.afterSelect : null}
+                {item.afterSelect ? (
+                  <div className="dialog dialog__after">{item.afterSelect}</div>
+                ) : null}
+                {item.afterPhrase
+                  ? item.afterPhrase.map((item) => (
+                      <div className="dialog dialog__phrase">{item}</div>
+                    ))
+                  : null}
               </span>
               {errors[item.name] && (
-                <p style={{ margin: "0px 10px" }}>Need select answer</p>
+                <div className="answer__tooltip">
+                  Впишите ответ ({item.name})
+                </div>
               )}
               {renderResult(item)}
             </div>
@@ -128,7 +138,6 @@ const InputSentencesQuestions = (props) => {
         );
       })}
       <button
-        style={{ width: "40%" }}
         type="button"
         onClick={() => {
           for (let i = 0; i < quizData.length; i++) {

@@ -16,7 +16,7 @@ const RadioQuestions = (props) => {
     },
     radio: {
       checked: {
-        color: "green",
+        color: "green !important",
       },
     },
   }));
@@ -56,7 +56,7 @@ const RadioQuestions = (props) => {
         return <p>Верно</p>;
       }
 
-      return <p>Не Верно, подсказка - {item.prompt}</p>;
+      return <p>Не Верно, подсказка - {item.hint}</p>;
     }
   };
 
@@ -99,6 +99,7 @@ const RadioQuestions = (props) => {
             <p
               style={{
                 margin: 0,
+                textAlign: "left",
               }}
             >
               {item.title}
@@ -118,7 +119,8 @@ const RadioQuestions = (props) => {
                         <FormControlLabel
                           value={elem.value}
                           control={<Radio classes={neededClass(item)} />}
-                          label={elem.title}
+                          className={classes.radio}
+                          label={elem.value}
                         />
                       );
                     })}
@@ -134,7 +136,11 @@ const RadioQuestions = (props) => {
                 {errors.wordlevel && errors.wordlevel.message}
               </FormHelperText>
             </FormControl>
-            {errors[item.name] && <p>Need select answer</p>}
+            {errors[item.name] && (
+              <div className="answer__tooltip" style={{ textAlign: "left" }}>
+                Выберите ответ
+              </div>
+            )}
             {renderResult(item)}
           </div>
         );

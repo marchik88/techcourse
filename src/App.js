@@ -3,7 +3,7 @@ import Lesson1 from "./components/lessons/Lesson1";
 import Lesson2 from "./components/lessons/Lesson2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import "./style.sass";
+import "./styles/style.sass";
 
 import "./App.css";
 

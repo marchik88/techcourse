@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
+import Box from "@material-ui/core/Box";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
 import { Tooltip } from "../styled/Styled";
 
-const SelectSentencesQuestions = (props) => {
-  const { quizData } = props;
+const SelectSentencesQuestions1 = (props) => {
+  const { quizData, set } = props;
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -42,6 +43,39 @@ const SelectSentencesQuestions = (props) => {
     }
   };
 
+  const [selected, setSelected] = useState(new Set());
+
+  const handleChange = (event) => {
+    const a = event.target.value;
+    selected.add(a);
+    setSelected(new Set(selected));
+    return event.target.value;
+  };
+
+  const useStyles2 = makeStyles({
+    root: {
+      color: "green !important",
+    },
+  });
+
+  const classes_check = useStyles2();
+
+  const useStyles3 = makeStyles({
+    root: {
+      color: "red !important",
+    },
+  });
+
+  const classes_uncheck = useStyles3();
+
+  const neededClass = (item) => {
+    if (Array.from(selected).includes(item)) {
+      return classes_check;
+    }
+
+    return classes_uncheck;
+  };
+
   return (
     <form
       style={{
@@ -51,6 +85,18 @@ const SelectSentencesQuestions = (props) => {
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
+      {set.map((item, index) => {
+        return (
+          <Box
+            component="span"
+            display="block"
+            classes={neededClass(item)}
+            key={index}
+          >
+            {item}
+          </Box>
+        );
+      })}
       {quizData.map((item, index) => {
         return (
           <div
@@ -89,6 +135,7 @@ const SelectSentencesQuestions = (props) => {
                 <FormControl
                   className={classes.formControl}
                   error={Boolean(errors[item.name])}
+                  name={item.name}
                 >
                   <Controller
                     as={
@@ -104,9 +151,9 @@ const SelectSentencesQuestions = (props) => {
                     }
                     name={item.name}
                     rules={{ required: "this is required" }}
-                    // onChange={([event]) => handleChange(event)}
                     control={control}
                     defaultValue=""
+                    onChange={([event]) => handleChange(event)}
                   />
                   <FormHelperText>
                     {errors.wordlevel && errors.wordlevel.message}
@@ -145,4 +192,4 @@ const SelectSentencesQuestions = (props) => {
   );
 };
 
-export default SelectSentencesQuestions;
+export default SelectSentencesQuestions1;

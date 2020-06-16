@@ -114,7 +114,7 @@ const RadioQuestions = (props) => {
                     name={item.name}
                     ref={register({ required: true })}
                   >
-                    {item.options.map((elem, index) => {
+                    {item.options.map((elem) => {
                       return (
                         <FormControlLabel
                           value={elem.value}

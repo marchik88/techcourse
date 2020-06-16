@@ -17,7 +17,7 @@ const InputSentencesQuestions = (props) => {
 
   const classes = useStyles();
 
-  const { register, handleSubmit, errors, setValue, control } = useForm();
+  const { handleSubmit, errors, setValue, control } = useForm();
 
   const [formReady, setFormReady] = useState(false);
 
@@ -83,8 +83,10 @@ const InputSentencesQuestions = (props) => {
                 }}
               >
                 {item.beforePhrase
-                  ? item.beforePhrase.map((item) => (
-                      <div className="dialog dialog__phrase">{item}</div>
+                  ? item.beforePhrase.map((item, index) => (
+                      <div className="dialog dialog__phrase" key={index}>
+                        {item}
+                      </div>
                     ))
                   : null}
                 {item.beforeSelect ? (
@@ -100,9 +102,6 @@ const InputSentencesQuestions = (props) => {
                     as={
                       <TextField
                         id="standard-basic"
-                        ref={register({
-                          required: true,
-                        })}
                         style={{
                           margin: "0px !important",
                         }}
@@ -122,8 +121,10 @@ const InputSentencesQuestions = (props) => {
                   <div className="dialog dialog__after">{item.afterSelect}</div>
                 ) : null}
                 {item.afterPhrase
-                  ? item.afterPhrase.map((item) => (
-                      <div className="dialog dialog__phrase">{item}</div>
+                  ? item.afterPhrase.map((item, index) => (
+                      <div className="dialog dialog__phrase" key={index}>
+                        {item}
+                      </div>
                     ))
                   : null}
               </span>

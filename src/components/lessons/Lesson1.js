@@ -3,6 +3,7 @@ import pc from "../../img/pc.png";
 import SelectQuestions from "../selectQuestions/selectQuestions";
 import RadioQuestions from "../selectQuestions/radioQuestions";
 import SelectSentencesQuestions from "../selectQuestions/selectSentencesQuestions";
+import SelectSentencesQuestions1 from "../selectQuestions/selectSentencesQuestions1";
 import InputSentencesQuestions from "../selectQuestions/inputSentencesQuestions";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -518,6 +519,99 @@ function Lesson() {
     },
   ];
 
+  const quizData5 = [
+    {
+      name: "1",
+      beforeSelect: "",
+      afterSelect: "to see pages above.",
+      options: variablesForSelectSentences,
+      answer: "scroll up",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "2",
+      beforeSelect: "",
+      afterSelect: "to see pages below.",
+      options: variablesForSelectSentences,
+      answer: "scroll down",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "3",
+      beforeSelect: "To select text, ",
+      afterSelect: " the left button, and move the mouse pointer.",
+      options: variablesForSelectSentences,
+      answer: "hold down",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "4",
+      beforeSelect: "With a laptop computer, plug in a mouse, or use the ",
+      afterSelect: "in front of the keyboard.",
+      options: variablesForSelectSentences,
+      answer: "touchpad",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "5",
+      beforeSelect: "To play some games, you need to use a",
+      afterSelect: "instead of a mouse.",
+      options: variablesForSelectSentences,
+      answer: "joystick",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "6",
+      beforeSelect: "To move up and down a page, you can",
+      afterSelect: "the mouse wheel.",
+      options: variablesForSelectSentences,
+      answer: "scroll wheel",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "7",
+      beforeSelect: "This mouse doesn't have a ball. It's an",
+      afterSelect: "mouse.",
+      options: variablesForSelectSentences,
+      answer: "optical",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "8",
+      beforeSelect: "One click of a mouse button is called a",
+      afterSelect: "click.",
+      options: variablesForSelectSentences,
+      answer: "single",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "9",
+      beforeSelect: "Two clicks of a mouse button are called a",
+      afterSelect: "click.",
+      options: variablesForSelectSentences,
+      answer: "double",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "10",
+      beforeSelect: "Click",
+      afterSelect: "the folder to open it.",
+      options: variablesForSelectSentences,
+      answer: "left button",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+  ];
+
   return (
     <div className="box">
       <>
@@ -570,6 +664,18 @@ function Lesson() {
             </Col>
             <Col md={{ span: 8, offset: 2 }}>
               <RadioQuestions quizData={quizData3} />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md={{ span: 12 }}>
+              <h2>6. Match the verbs with the nouns.</h2>
+            </Col>
+            <Col md={{ span: 8, offset: 2 }}>
+              <SelectSentencesQuestions1
+                quizData={quizData5}
+                set={variablesForSelectSentences}
+              />
             </Col>
           </Row>
         </Container>

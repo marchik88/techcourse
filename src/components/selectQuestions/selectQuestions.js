@@ -18,7 +18,7 @@ const SelectQuestions = (props) => {
 
   const classes = useStyles();
 
-  const { register, handleSubmit, errors, setValue, control } = useForm();
+  const { handleSubmit, errors, setValue, control } = useForm();
 
   const [formReady, setFormReady] = useState(false);
 
@@ -76,11 +76,7 @@ const SelectQuestions = (props) => {
             >
               <Controller
                 as={
-                  <Select
-                    name={item.name}
-                    ref={register({ required: true })}
-                    defaultValue=""
-                  >
+                  <Select>
                     {item.options.map((elem, index) => {
                       return (
                         <MenuItem key={index} value={elem}>
@@ -90,10 +86,10 @@ const SelectQuestions = (props) => {
                     })}
                   </Select>
                 }
-                name={item.name}
+                control={control}
                 rules={{ required: "this is required" }}
                 onChange={([event]) => handleChange(event)}
-                control={control}
+                name={item.name}
                 defaultValue=""
               />
               <FormHelperText>

@@ -1,67 +1,54 @@
-//=== Drawing effect
+.multi-button
+  display: flex
+  width: 100%
+  box-shadow: var(--shadow) 4px 4px
+  height: 50px
+  margin: 30px auto
+  max-width: 700px
+  --border-size: 0.125rem
+  --duration: 250ms
+  --ease: cubic-bezier(0.215, 0.61, 0.355, 1)
+  --font-family: "Roboto"
+  --color-primary: #ffc312
+  --color-secondary: black
+  --color-tertiary: dodgerblue
+  --shadow: rgba(0, 0, 0, 0.1)
+  --space: 1rem
 
-@mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) 
-  box-shadow: inset 0 0 0 $width $color
-  color: $color
-  transition: color $duration $duration/3
-  position: relative
-  
-  &::before,
-  &::after 
-    border: 0 solid transparent
-    box-sizing: border-box
-    content: ''
-    pointer-events: none
-    position: absolute
-    width: 0
-    height: 0
-    
-    #{$vertical}: 0
-    #{$horizontal}: 0
+  .buttonR
+    flex-grow: 1
+    cursor: pointer
+    position: relative
+    border: var(--border-size) solid black
+    color: var(--color-secondary)
+    background-color: var(--color-primary)
+    font-size: 1.5rem
+    font-family: var(--font-family)
+    // text-shadow: var(--shadow) 2px 2px
+    transition: flex-grow var(--duration) var(--ease)
 
-  &::before 
-    $h-side: if($horizontal == 'left', 'right', 'left')
-    
-    border-#{$vertical}-width: $width
-    border-#{$h-side}-width: $width
-  
-  
-  &::after 
-    $v-side: if($vertical == 'top', 'bottom', 'top')
-    
-    border-#{$v-side}-width: $width
-    border-#{$horizontal}-width: $width
-  
-  
-  &:hover 
-    color: $hover
-    
-    &::before,
-    &::after 
-      border-color: $hover
-      transition: border-color 0s, width $duration, height $duration
-      width: 100%
-      height: 100%
-    
-    
-    &::before 
-      transition-delay: 0s, 0s, $duration
-    
-    &::after 
-      transition-delay: 0s, $duration, 0s
+    + button
+      border-left: var(--border-size) solid black
+      margin-left: calc(var(--border-size) * -1)
 
-.draw-border 
-  @include btn-border-drawing(#58afd1, green, 4px, bottom, right)
+    &:hover
+      flex-grow: 2
+      color: white
+      outline: none
+      text-shadow: none
+      background-color: var(--color-secondary)
 
-//=== Button styling, semi-ignore
-.btn 
-  background: none
-  border: none
-  cursor: pointer
-  line-height: 1.5
-  font: 700 1.2rem 'Roboto Slab', sans-serif
-  padding: 1em 2em
-  letter-spacing: 0.05rem
-  
-  &:focus 
-    outline: 2px dotted #55d7dc
+    &:focus
+      flex-grow: 2
+      color: white
+      outline: none
+      text-shadow: none
+      background-color: var(--color-secondary)
+      outline: var(--border-size) dashed var(--color-primary)
+      outline-offset: calc(var(--border-size) * -3)
+
+  &:hover button:focus:not(:hover)
+    flex-grow: 1
+    color: var(--color-secondary)
+    background-color: var(--color-primary)
+    outline-color: var(--color-tertiary)

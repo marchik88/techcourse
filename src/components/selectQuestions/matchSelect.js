@@ -8,7 +8,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
 import { Tooltip } from "../styled/Styled";
 
-const SelectSentencesQuestions1 = (props) => {
+const MatchSelect = (props) => {
   const { quizData, set } = props;
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -43,38 +43,67 @@ const SelectSentencesQuestions1 = (props) => {
     }
   };
 
-  const [selected, setSelected] = useState(new Set());
+  const [selected, setSelected] = useState([]);
+
+  const [options] = useState(new Set(set));
 
   const handleChange = (event) => {
-    const a = event.target.value;
-    selected.add(a);
-    setSelected(new Set(selected));
-    return event.target.value;
+    const value = event.target.value;
+    const name = parseInt(event.target.name);
+    selected[name] = value;
+    setSelected(new Array(...selected));
+    setLength(length + 1);
+    return value;
   };
 
   const useStyles2 = makeStyles({
     root: {
-      color: "green !important",
+      color: "#ff767b !important",
+      textDecoration: "line-through",
     },
   });
 
   const classes_check = useStyles2();
 
+  const useStylesHide = makeStyles({
+    root: {
+      display: "none !important",
+    },
+  });
+
+  const classes_hide = useStylesHide();
+
+  const useStylesShow = makeStyles({
+    root: {
+      display: "block !important",
+    },
+  });
+
+  const classes_show = useStylesShow();
+
   const useStyles3 = makeStyles({
     root: {
-      color: "red !important",
+      color: "#ffc312 !important",
     },
   });
 
   const classes_uncheck = useStyles3();
 
   const neededClass = (item) => {
-    if (Array.from(selected).includes(item)) {
+    if (selected.includes(item)) {
       return classes_check;
     }
-
     return classes_uncheck;
   };
+
+  const neededClassForOption = (item) => {
+    if (selected.includes(item)) {
+      return classes_hide;
+    }
+    return classes_show;
+  };
+
+  const [length, setLength] = useState(0);
 
   return (
     <form
@@ -85,18 +114,15 @@ const SelectSentencesQuestions1 = (props) => {
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {set.map((item, index) => {
-        return (
-          <Box
-            component="span"
-            display="block"
-            classes={neededClass(item)}
-            key={index}
-          >
-            {item}
-          </Box>
-        );
-      })}
+      <div className="box__items">
+        {set.map((item, index) => {
+          return (
+            <Box component="div" classes={neededClass(item)} key={index}>
+              {item}
+            </Box>
+          );
+        })}
+      </div>
       {quizData.map((item, index) => {
         return (
           <div
@@ -112,6 +138,8 @@ const SelectSentencesQuestions1 = (props) => {
             <p
               style={{
                 margin: "0px 10px",
+                minWidth: "1.25rem",
+                color: "#fff",
               }}
             >
               {index + 1}
@@ -119,12 +147,14 @@ const SelectSentencesQuestions1 = (props) => {
             <div
               style={{
                 textAlign: "left",
+                color: "#fff",
               }}
             >
               <span
                 style={{
                   margin: "0px",
                   textAlign: "left",
+                  color: "#fff",
                 }}
               >
                 {item.beforeSelect ? (
@@ -140,9 +170,14 @@ const SelectSentencesQuestions1 = (props) => {
                   <Controller
                     as={
                       <Select name={item.name} defaultValue="">
-                        {item.options.map((elem, index) => {
+                        {Array.from(options).map((elem, index) => {
                           return (
-                            <MenuItem key={index} value={elem}>
+                            <MenuItem
+                              key={index}
+                              value={elem}
+                              classes={neededClassForOption(elem)}
+                              disabled={selected.includes(elem)}
+                            >
                               {elem}
                             </MenuItem>
                           );
@@ -163,7 +198,7 @@ const SelectSentencesQuestions1 = (props) => {
                   <div className="dialog dialog__after">{item.afterSelect}</div>
                 ) : null}
               </span>
-              {errors[item.name] && (
+              {errors[item.name] && length > 0 && (
                 <div className="answer__tooltip">
                   Выберите ответ ({item.name})
                 </div>
@@ -173,23 +208,27 @@ const SelectSentencesQuestions1 = (props) => {
           </div>
         );
       })}
-      <button
-        style={{ width: "40%" }}
-        type="button"
-        onClick={() => {
-          for (let i = 0; i < quizData.length; i++) {
-            setValue(quizData[i].name, "");
-          }
-          setFormReady(false);
-        }}
-      >
-        Сбросить
-      </button>
-      <button style={{ width: "40%" }} type="submit">
-        Проверить
-      </button>
+      <div className="multi-button">
+        <button className="buttonR" type="submit">
+          Проверить
+        </button>
+        <button
+          type="button"
+          className="buttonR"
+          onClick={() => {
+            for (let i = 0; i < quizData.length; i++) {
+              setValue(quizData[i].name, "");
+              setSelected([]);
+            }
+            setFormReady(false);
+            setLength(0);
+          }}
+        >
+          Сбросить
+        </button>
+      </div>
     </form>
   );
 };
 
-export default SelectSentencesQuestions1;
+export default MatchSelect;

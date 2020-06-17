@@ -39,7 +39,7 @@ const RadioQuestions = (props) => {
 
   const classes = useStyles();
 
-  const { register, handleSubmit, errors, setValue, control } = useForm();
+  const { handleSubmit, errors, setValue, control } = useForm();
 
   const [formReady, setFormReady] = useState(false);
 
@@ -110,13 +110,11 @@ const RadioQuestions = (props) => {
             >
               <Controller
                 as={
-                  <RadioGroup
-                    name={item.name}
-                    ref={register({ required: true })}
-                  >
-                    {item.options.map((elem) => {
+                  <RadioGroup name={item.name}>
+                    {item.options.map((elem, index) => {
                       return (
                         <FormControlLabel
+                          key={index}
                           value={elem.value}
                           control={<Radio classes={neededClass(item)} />}
                           className={classes.radio}

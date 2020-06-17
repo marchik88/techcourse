@@ -5,6 +5,7 @@ body
   margin: 0
   font-family: "Roboto", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
   background: #f8f9fa
+  touch-action: manipulation
 code 
   font-family: "Roboto", source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
 .MuiFormControl-root 
@@ -47,3 +48,20 @@ code
     height: 1rem !important
 .MuiButtonBase-root
   color: #222 !important
+.box__items
+  border: 2px dashed #65ddd9
+  display: flex
+  width: 100%
+  flex-wrap: wrap
+  justify-content: center
+  margin-bottom: 20px
+  > div
+    margin: 0 5px
+.wrapper
+  background: #334150
+  padding: 30px 0 50px
+  .MuiSelect-icon
+    color: #ffc312 !important
+  .MuiSelect-select.MuiSelect-select
+    color: #ffc312 !important
+    text-align: center !important

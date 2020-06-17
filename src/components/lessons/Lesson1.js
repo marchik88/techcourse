@@ -3,7 +3,7 @@ import pc from "../../img/pc.png";
 import SelectQuestions from "../selectQuestions/selectQuestions";
 import RadioQuestions from "../selectQuestions/radioQuestions";
 import SelectSentencesQuestions from "../selectQuestions/selectSentencesQuestions";
-import SelectSentencesQuestions1 from "../selectQuestions/selectSentencesQuestions1";
+import MatchSelect from "../selectQuestions/matchSelect";
 import InputSentencesQuestions from "../selectQuestions/inputSentencesQuestions";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -666,19 +666,28 @@ function Lesson() {
               <RadioQuestions quizData={quizData3} />
             </Col>
           </Row>
-
-          <Row>
-            <Col md={{ span: 12 }}>
-              <h2>6. Match the verbs with the nouns.</h2>
-            </Col>
-            <Col md={{ span: 8, offset: 2 }}>
-              <SelectSentencesQuestions1
-                quizData={quizData5}
-                set={variablesForSelectSentences}
-              />
-            </Col>
-          </Row>
         </Container>
+        <div className="wrapper">
+          <Container>
+            <Row>
+              <Col md={{ span: 12 }}>
+                <h2
+                  style={{
+                    color: "#65ddd9",
+                  }}
+                >
+                  6. Match the verbs with the nouns.
+                </h2>
+              </Col>
+              <Col md={{ span: 8, offset: 2 }}>
+                <MatchSelect
+                  quizData={quizData5}
+                  set={variablesForSelectSentences}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </>
     </div>
   );

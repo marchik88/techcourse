@@ -138,18 +138,24 @@ const InputSentencesQuestions = (props) => {
           </div>
         );
       })}
-      <button
-        type="button"
-        onClick={() => {
-          for (let i = 0; i < quizData.length; i++) {
-            setValue(quizData[i].name, "");
-          }
-          setFormReady(false);
-        }}
-      >
-        Сбросить
-      </button>
-      <button type="submit">Проверить</button>
+      <div className="multi-button">
+        <button className="buttonR" type="submit">
+          Проверить
+        </button>
+        <button
+          type="button"
+          className="buttonR"
+          onClick={() => {
+            for (let i = 0; i < quizData.length; i++) {
+              setValue(quizData[i].name, "");
+              errors[quizData[i].name] = null;
+            }
+            setFormReady(false);
+          }}
+        >
+          Сбросить
+        </button>
+      </div>
     </form>
   );
 };

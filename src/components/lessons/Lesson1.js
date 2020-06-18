@@ -24,67 +24,67 @@ function Lesson() {
 
   const quizData = [
     {
-      name: "option1",
+      name: "1",
       options: variables,
       answer: `Optical Disk Drive`,
       showAnswer: false,
     },
     {
-      name: "option2",
+      name: "2",
       options: variables,
       answer: `Case`,
       showAnswer: false,
     },
     {
-      name: "option3",
+      name: "3",
       options: variables,
       answer: `CPU(Central Processing Unit)`,
       showAnswer: false,
     },
     {
-      name: "option4",
+      name: "4",
       options: variables,
       answer: `Motherboard`,
       showAnswer: false,
     },
     {
-      name: "option5",
+      name: "5",
       options: variables,
       answer: `GPU(Graphics processing unit)`,
       showAnswer: false,
     },
     {
-      name: "option6",
+      name: "6",
       options: variables,
       answer: `Main Memory(RAM)`,
       showAnswer: false,
     },
     {
-      name: "option7",
+      name: "7",
       options: variables,
       answer: `Hard Disk Drive`,
       showAnswer: false,
     },
     {
-      name: "option8",
+      name: "8",
       options: variables,
       answer: `Power Supply`,
       showAnswer: false,
     },
     {
-      name: "option9",
+      name: "9",
       options: variables,
       answer: `Monitor`,
       showAnswer: false,
     },
     {
-      name: "option10",
+      name: "10",
       options: variables,
       answer: `Keyboard`,
       showAnswer: false,
     },
     {
-      name: "option11",
+      name: "11",
       options: variables,
       answer: `Mouse`,
       showAnswer: false,
@@ -621,7 +621,7 @@ function Lesson() {
               <img className="img-fluid" src={pc} alt="PC"></img>
             </Col>
             <Col md={{ span: 8, offset: 2 }}>
-              <SelectQuestions quizData={quizData} />
+              <SelectQuestions quizData={quizData} set={variables} />
             </Col>
           </Row>
 
@@ -643,18 +643,6 @@ function Lesson() {
             </Col>
             <Col md={{ span: 8, offset: 2 }}>
               <InputSentencesQuestions quizData={quizData2} />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md={{ span: 12 }}>
-              <h2>
-                4. Listen to two colleagues discussing software and complete
-                this dialogue.
-              </h2>
-            </Col>
-            <Col md={{ span: 8, offset: 2 }}>
-              <SelectSentencesQuestions quizData={quizData4} />
             </Col>
           </Row>
 

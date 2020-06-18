@@ -8,7 +8,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Tooltip } from "../styled/Styled";
 
 const SelectQuestions = (props) => {
-  const { quizData } = props;
+  const { quizData, set } = props;
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -42,9 +42,39 @@ const SelectQuestions = (props) => {
     }
   };
 
+  const [options] = useState(new Set(set));
+
+  const [selected, setSelected] = useState([]);
+
   const handleChange = (event) => {
-    setFormReady(false);
-    return event.target.value;
+    const value = event.target.value;
+    const name = event.target.name;
+    selected[name] = value;
+    setSelected(new Array(...selected));
+    return value;
+  };
+
+  const useStylesHide = makeStyles({
+    root: {
+      display: "none !important",
+    },
+  });
+
+  const classes_hide = useStylesHide();
+
+  const useStylesShow = makeStyles({
+    root: {
+      display: "block !important",
+    },
+  });
+
+  const classes_show = useStylesShow();
+
+  const neededClassForOption = (item) => {
+    if (selected.includes(item)) {
+      return classes_hide;
+    }
+    return classes_show;
   };
 
   return (
@@ -73,24 +103,31 @@ const SelectQuestions = (props) => {
             <FormControl
               className={classes.formControl}
               error={Boolean(errors[item.name])}
+              name={item.name}
             >
               <Controller
                 as={
-                  <Select>
-                    {item.options.map((elem, index) => {
+                  <Select name={item.name}>
+                    {Array.from(options).map((elem, index) => {
                       return (
-                        <MenuItem key={index} value={elem}>
+                        <MenuItem
+                          key={index}
+                          value={elem}
+                          classes={neededClassForOption(elem)}
+                          disabled={selected.includes(elem)}
+                        >
                           {elem}
                         </MenuItem>
                       );
                     })}
+                    <MenuItem value="">Сбросить</MenuItem>
                   </Select>
                 }
                 control={control}
                 rules={{ required: "this is required" }}
-                onChange={([event]) => handleChange(event)}
                 name={item.name}
                 defaultValue=""
+                onChange={([event]) => handleChange(event)}
               />
               <FormHelperText>
                 {errors.wordlevel && errors.wordlevel.message}
@@ -103,19 +140,25 @@ const SelectQuestions = (props) => {
           </div>
         );
       })}
-      <button
-        type="button"
-        onClick={() => {
-          for (let i = 0; i < quizData.length; i++) {
-            setValue(quizData[i].name, "");
-          }
-          setFormReady(false);
-        }}
-      >
-        Сбросить
-      </button>
-      <button type="submit">Проверить</button>
-      {errors.errorMessage?.message}
+      <div className="multi-button">
+        <button className="buttonR" type="submit">
+          Проверить
+        </button>
+        <button
+          type="button"
+          className="buttonR"
+          onClick={() => {
+            for (let i = 0; i < quizData.length; i++) {
+              setValue(quizData[i].name, "");
+              errors[quizData[i].name] = null;
+            }
+            setFormReady(false);
+            setSelected([]);
+          }}
+        >
+          Сбросить
+        </button>
+      </div>
     </form>
   );
 };

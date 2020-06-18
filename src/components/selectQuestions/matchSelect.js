@@ -52,7 +52,6 @@ const MatchSelect = (props) => {
     const name = parseInt(event.target.name);
     selected[name] = value;
     setSelected(new Array(...selected));
-    setLength(length + 1);
     return value;
   };
 
@@ -102,8 +101,6 @@ const MatchSelect = (props) => {
     }
     return classes_show;
   };
-
-  const [length, setLength] = useState(0);
 
   return (
     <form
@@ -169,7 +166,7 @@ const MatchSelect = (props) => {
                 >
                   <Controller
                     as={
-                      <Select name={item.name} defaultValue="">
+                      <Select name={item.name}>
                         {Array.from(options).map((elem, index) => {
                           return (
                             <MenuItem
@@ -182,6 +179,7 @@ const MatchSelect = (props) => {
                             </MenuItem>
                           );
                         })}
+                        <MenuItem value="">Сбросить</MenuItem>
                       </Select>
                     }
                     name={item.name}
@@ -198,7 +196,7 @@ const MatchSelect = (props) => {
                   <div className="dialog dialog__after">{item.afterSelect}</div>
                 ) : null}
               </span>
-              {errors[item.name] && length > 0 && (
+              {errors[item.name] && (
                 <div className="answer__tooltip">
                   Выберите ответ ({item.name})
                 </div>
@@ -218,10 +216,10 @@ const MatchSelect = (props) => {
           onClick={() => {
             for (let i = 0; i < quizData.length; i++) {
               setValue(quizData[i].name, "");
-              setSelected([]);
+              errors[quizData[i].name] = null;
             }
             setFormReady(false);
-            setLength(0);
+            setSelected([]);
           }}
         >
           Сбросить

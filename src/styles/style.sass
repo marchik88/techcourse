@@ -46,8 +46,6 @@ code
     padding: 0 3px !important
   .MuiInputBase-input
     height: 1rem !important
-.MuiButtonBase-root
-  color: #222 !important
 .box__items
   border: 2px dashed #65ddd9
   display: flex
@@ -59,9 +57,30 @@ code
     margin: 0 5px
 .wrapper
   background: #334150
-  padding: 30px 0 50px
+  padding: 25px 0
   .MuiSelect-icon
     color: #ffc312 !important
   .MuiSelect-select.MuiSelect-select
     color: #ffc312 !important
     text-align: center !important
+// ___ styles for radio quiz ___
+.quiz
+  &__form
+    display: flex
+    flex-direction: column
+    align-items: center
+.match
+  &__box    
+    display: flex
+    flex-direction: row
+    justify-items: center
+    align-items: flex-start
+    width: 100%
+.radio
+  &__box
+    @extend .match__box
+    flex-direction: column
+  .MuiButtonBase-root
+    color: #ffc312 !important
+  .MuiTypography-root
+    color: #ffc312 !important

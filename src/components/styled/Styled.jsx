@@ -2,9 +2,10 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 
 export const Tooltip = styled.p`
-  font-size: 14px;
+  font-size: 16px;
   margin: 0;
-  color: ${(props) => (props.correct ? "green" : "red")};
+  color: ${(props) => (props.correct ? "rgb(18, 203, 163)" : "#ff767b")};
+  text-align: ${(props) => (props.left ? "left" : "center")};
   font-family: "Inter", sans-serif;
   width: 100%;
 `;

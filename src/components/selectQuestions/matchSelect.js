@@ -103,14 +103,7 @@ const MatchSelect = (props) => {
   };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="quiz__form match" onSubmit={handleSubmit(onSubmit)}>
       <div className="box__items">
         {set.map((item, index) => {
           return (
@@ -122,17 +115,9 @@ const MatchSelect = (props) => {
       </div>
       {quizData.map((item, index) => {
         return (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyItems: "center",
-              alignItems: "flex-start",
-              width: "100%",
-            }}
-          >
+          <div className="match__box" key={index}>
             <p
+              className="texto"
               style={{
                 margin: "0px 10px",
                 minWidth: "1.25rem",
@@ -142,12 +127,14 @@ const MatchSelect = (props) => {
               {index + 1}
             </p>
             <div
+              className="drygoy_divak"
               style={{
                 textAlign: "left",
                 color: "#fff",
               }}
             >
               <span
+                className="span"
                 style={{
                   margin: "0px",
                   textAlign: "left",

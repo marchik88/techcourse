@@ -6,6 +6,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
+import { Tooltip } from "../styled/Styled";
 
 const RadioQuestions = (props) => {
   const { quizData } = props;
@@ -13,11 +14,6 @@ const RadioQuestions = (props) => {
     formControl: {
       margin: theme.spacing(1),
       minWidth: 100,
-    },
-    radio: {
-      checked: {
-        color: "green !important",
-      },
     },
   }));
 
@@ -45,8 +41,6 @@ const RadioQuestions = (props) => {
 
   const [answer, setAnswer] = useState({});
 
-  const [selected, setSelected] = useState([]);
-
   const onSubmit = (data) => {
     setAnswer(data);
     setFormReady(true);
@@ -55,10 +49,18 @@ const RadioQuestions = (props) => {
   const renderResult = (item) => {
     if (formReady) {
       if (answer[item.name] === item.answer) {
-        return <p>Верно</p>;
+        return (
+          <Tooltip left correct>
+            Верно
+          </Tooltip>
+        );
       }
 
-      return <p>Не Верно, подсказка - {item.hint}</p>;
+      return (
+        <Tooltip left>
+          Неверно, посмотреть подсказку -<p>{item.hint}</p>
+        </Tooltip>
+      );
     }
   };
 
@@ -78,30 +80,15 @@ const RadioQuestions = (props) => {
   };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="quiz__form radio" onSubmit={handleSubmit(onSubmit)}>
       {quizData.map((item, index) => {
         return (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyItems: "center",
-              alignItems: "flex-start",
-              width: "100%",
-            }}
-          >
+          <div className="radio__box" key={index}>
             <p
               style={{
                 margin: 0,
                 textAlign: "left",
+                color: "#fff",
               }}
             >
               {item.title}

@@ -249,7 +249,7 @@ function Lesson() {
           value: "C. switch",
         },
       ],
-      answer: "A. touch",
+      answer: "B. press",
       hint: "SELECT 1",
     },
     {
@@ -645,16 +645,25 @@ function Lesson() {
               <InputSentencesQuestions quizData={quizData2} />
             </Col>
           </Row>
-
-          <Row>
-            <Col md={{ span: 12 }}>
-              <h2>5. Choose the best verb.</h2>
-            </Col>
-            <Col md={{ span: 8, offset: 2 }}>
-              <RadioQuestions quizData={quizData3} />
-            </Col>
-          </Row>
         </Container>
+        <div className="wrapper">
+          <Container>
+            <Row>
+              <Col md={{ span: 12 }}>
+                <h2
+                  style={{
+                    color: "#65ddd9",
+                  }}
+                >
+                  5. Choose the best verb.
+                </h2>
+              </Col>
+              <Col md={{ span: 8, offset: 2 }}>
+                <RadioQuestions quizData={quizData3} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
         <div className="wrapper">
           <Container>
             <Row>

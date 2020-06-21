@@ -1,5 +1,5 @@
 import React from "react";
-import pc from "../../img/pc.png";
+import pc from "../img/lesson1/pc.png";
 import SelectQuestionsWithoutButtons from "../selectQuestions/selectQuestionsWithoutButtons";
 import RadioQuestionsWithoutButton from "../selectQuestions/radioQuestionsWithoutButton";
 import SelectSentencesQuestionsWithoutButton from "../selectQuestions/selectSentencesQuestionsWithoutButton";

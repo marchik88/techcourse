@@ -97,11 +97,13 @@ const InputSentencesQuestions = (props) => {
                 <FormControl
                   className={classes.formControl}
                   error={Boolean(errors[item.name])}
+                  name={item.name}
                 >
                   <Controller
                     as={
                       <TextField
-                        id="standard-basic"
+                        name={item.name}
+                        id="standard-basic228"
                         style={{
                           margin: "0px !important",
                         }}
@@ -116,7 +118,7 @@ const InputSentencesQuestions = (props) => {
                   <FormHelperText>
                     {errors.wordlevel && errors.wordlevel.message}
                   </FormHelperText>
-                </FormControl>{" "}
+                </FormControl>
                 {item.afterSelect ? (
                   <div className="dialog dialog__after">{item.afterSelect}</div>
                 ) : null}
@@ -151,6 +153,7 @@ const InputSentencesQuestions = (props) => {
               errors[quizData[i].name] = null;
             }
             setFormReady(false);
+            setAnswer({});
           }}
         >
           Сбросить

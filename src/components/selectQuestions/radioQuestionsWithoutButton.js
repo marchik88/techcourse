@@ -71,13 +71,7 @@ const RadioQuestionsWithoutButton = (props) => {
   };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <form className="quiz__form">
       {data.map((item, index) => {
         return (
           <div

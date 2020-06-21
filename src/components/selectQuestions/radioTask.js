@@ -8,7 +8,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
 import { Tooltip } from "../styled/Styled";
 
-const RadioQuestions = (props) => {
+const RadioTask = (props) => {
   const { quizData } = props;
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -84,15 +84,7 @@ const RadioQuestions = (props) => {
       {quizData.map((item, index) => {
         return (
           <div className="radio__box" key={index}>
-            <p
-              style={{
-                margin: 0,
-                textAlign: "left",
-                color: "#fff",
-              }}
-            >
-              {item.title}
-            </p>
+            <p className="task__phrase">{item.title}</p>
             <FormControl
               className={classes.formControl}
               error={Boolean(errors[item.name])}
@@ -155,4 +147,4 @@ const RadioQuestions = (props) => {
   );
 };
 
-export default RadioQuestions;
+export default RadioTask;

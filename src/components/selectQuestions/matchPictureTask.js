@@ -8,16 +8,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
 import { Tooltip } from "../styled/Styled";
 
-const MatchSelect = (props) => {
+const MatchTask = (props) => {
   const { quizData, set } = props;
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 100,
-    },
-  }));
-
-  const classes = useStyles();
 
   const { handleSubmit, errors, setValue, control } = useForm();
 
@@ -45,20 +37,31 @@ const MatchSelect = (props) => {
 
   const [selected, setSelected] = useState([]);
 
-  const [options] = useState(new Set(set));
+  const getNames = () => {
+    const name = [];
+    for (var x = 0; x < set.length; x++) {
+      name.push(set[x].name);
+    }
+    return name;
+  };
+
+  const [options] = useState(new Set(getNames()));
 
   const handleChange = (event) => {
     const value = event.target.value;
-    const name = parseInt(event.target.name);
+    const name = event.target.name;
     selected[name] = value;
     setSelected(new Array(...selected));
     return value;
   };
 
+  console.log("set_______", set);
+
   const useStyles2 = makeStyles({
     root: {
       color: "#ff767b !important",
-      textDecoration: "line-through",
+      opacity: 0.3,
+      position: "relative",
     },
   });
 
@@ -89,7 +92,7 @@ const MatchSelect = (props) => {
   const classes_uncheck = useStyles3();
 
   const neededClass = (item) => {
-    if (selected.includes(item)) {
+    if (selected.includes(item.name)) {
       return classes_check;
     }
     return classes_uncheck;
@@ -107,8 +110,14 @@ const MatchSelect = (props) => {
       <div className="box__items">
         {set.map((item, index) => {
           return (
-            <Box component="div" classes={neededClass(item)} key={index}>
-              {item}
+            <Box component="span" classes={neededClass(item)}>
+              <Box
+                component="img"
+                src={require(`../img/lesson1/${item.src}`)}
+                key={index}
+                alt={item}
+              ></Box>
+              {/* <Box component="div">{item.name}</Box> */}
             </Box>
           );
         })}
@@ -116,38 +125,15 @@ const MatchSelect = (props) => {
       {quizData.map((item, index) => {
         return (
           <div className="match__box" key={index}>
-            <p
-              className="texto"
-              style={{
-                margin: "0px 10px",
-                minWidth: "1.25rem",
-                color: "#fff",
-              }}
-            >
-              {index + 1}
-            </p>
-            <div
-              className="drygoy_divak"
-              style={{
-                textAlign: "left",
-                color: "#fff",
-              }}
-            >
-              <span
-                className="span"
-                style={{
-                  margin: "0px",
-                  textAlign: "left",
-                  color: "#fff",
-                }}
-              >
+            <p className="task__index">{index + 1}</p>
+            <div className="task__phrase">
+              <span>
                 {item.beforeSelect ? (
                   <div className="dialog dialog__before">
                     {item.beforeSelect}
                   </div>
                 ) : null}
                 <FormControl
-                  className={classes.formControl}
                   error={Boolean(errors[item.name])}
                   name={item.name}
                 >
@@ -166,7 +152,9 @@ const MatchSelect = (props) => {
                             </MenuItem>
                           );
                         })}
-                        <MenuItem value="">Сбросить</MenuItem>
+                        <MenuItem value="" style={{ background: "#ffc312" }}>
+                          Сбросить
+                        </MenuItem>
                       </Select>
                     }
                     name={item.name}
@@ -216,4 +204,4 @@ const MatchSelect = (props) => {
   );
 };
 
-export default MatchSelect;
+export default MatchTask;

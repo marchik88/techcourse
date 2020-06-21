@@ -8,13 +8,3 @@ code {
   font-family: "Inter", source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.MuiFormControl-root {
-  margin: 0 !important;
-}
-.MuiSelect-selectMenu {
-  min-width: 120px !important;
-}
-.MuiSelect-select.MuiSelect-select {
-  text-align: left !important;
-}

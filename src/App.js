@@ -5,8 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./styles/style.sass";
 
-import "./App.css";
-
 function App() {
   return (
     <Router>
@@ -25,8 +23,6 @@ function App() {
           </ul>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/lesson2">
             <Lesson2 />

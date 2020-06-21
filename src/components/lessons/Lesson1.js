@@ -1,10 +1,10 @@
 import React from "react";
-import pc from "../../img/pc.png";
-import SelectQuestions from "../selectQuestions/selectQuestions";
-import RadioQuestions from "../selectQuestions/radioQuestions";
-import SelectSentencesQuestions from "../selectQuestions/selectSentencesQuestions";
-import MatchSelect from "../selectQuestions/matchSelect";
-import InputSentencesQuestions from "../selectQuestions/inputSentencesQuestions";
+import pc from "../img/lesson1/pc.png";
+import SelectTask from "../selectQuestions/selectTask";
+import RadioTask from "../selectQuestions/radioTask";
+import MatchTask from "../selectQuestions/matchTask";
+import MatchPictureTask from "../selectQuestions/matchPictureTask";
+import InputTask from "../selectQuestions/inputTask";
 import { Container, Row, Col } from "react-bootstrap";
 
 function Lesson() {
@@ -519,94 +519,120 @@ function Lesson() {
     },
   ];
 
+  const variablesForSelectSentences2 = [
+    "digital photos",
+    "a socket",
+    "a number on your mobile phone",
+    "a presentation",
+    "something with the mouse",
+    "the battery",
+    "the mouse",
+    "twenty pages",
+  ];
+
   const quizData5 = [
     {
       name: "1",
-      beforeSelect: "",
-      afterSelect: "to see pages above.",
-      options: variablesForSelectSentences,
+      beforeSelect: "recharge",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
       answer: "scroll up",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
       name: "2",
-      beforeSelect: "",
-      afterSelect: "to see pages below.",
-      options: variablesForSelectSentences,
+      beforeSelect: "click on",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
       answer: "scroll down",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
       name: "3",
-      beforeSelect: "To select text, ",
-      afterSelect: " the left button, and move the mouse pointer.",
-      options: variablesForSelectSentences,
+      beforeSelect: "dial",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
       answer: "hold down",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
       name: "4",
-      beforeSelect: "With a laptop computer, plug in a mouse, or use the ",
-      afterSelect: "in front of the keyboard.",
-      options: variablesForSelectSentences,
+      beforeSelect: "give",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
       answer: "touchpad",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
       name: "5",
-      beforeSelect: "To play some games, you need to use a",
-      afterSelect: "instead of a mouse.",
-      options: variablesForSelectSentences,
+      beforeSelect: "move",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
       answer: "joystick",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
       name: "6",
-      beforeSelect: "To move up and down a page, you can",
-      afterSelect: "the mouse wheel.",
-      options: variablesForSelectSentences,
+      beforeSelect: "print out",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
       answer: "scroll wheel",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
       name: "7",
-      beforeSelect: "This mouse doesn't have a ball. It's an",
-      afterSelect: "mouse.",
-      options: variablesForSelectSentences,
-      answer: "optical",
+      beforeSelect: "plug in",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
+      answer: "scroll wheel",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
       name: "8",
-      beforeSelect: "One click of a mouse button is called a",
-      afterSelect: "click.",
-      options: variablesForSelectSentences,
-      answer: "single",
+      beforeSelect: "take some",
+      afterSelect: "",
+      options: variablesForSelectSentences2,
+      answer: "scroll wheel",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+  ];
+
+  const images = [
+    { src: "1.jpg", name: "1" },
+    { src: "2.jpg", name: "2" },
+    { src: "3.jpg", name: "3" },
+  ];
+
+  const quizData6 = [
+    {
+      name: "1",
+      beforeSelect: "recharge",
+      afterSelect: "",
+      answer: "1",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
-      name: "9",
-      beforeSelect: "Two clicks of a mouse button are called a",
-      afterSelect: "click.",
-      options: variablesForSelectSentences,
-      answer: "double",
+      name: "2",
+      beforeSelect: "click on",
+      afterSelect: "",
+      answer: "2",
       selectedValue: "Select answer",
       showAnswer: false,
     },
     {
-      name: "10",
-      beforeSelect: "Click",
-      afterSelect: "the folder to open it.",
-      options: variablesForSelectSentences,
-      answer: "left button",
+      name: "3",
+      beforeSelect: "dial",
+      afterSelect: "",
+      answer: "3",
       selectedValue: "Select answer",
       showAnswer: false,
     },
@@ -615,51 +641,17 @@ function Lesson() {
   return (
     <div className="box">
       <>
-        <Container>
-          <Row>
-            <Col xs={12}>
-              <img className="img-fluid" src={pc} alt="PC"></img>
-            </Col>
-            <Col md={{ span: 8, offset: 2 }}>
-              <SelectQuestions quizData={quizData} set={variables} />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md={{ span: 12 }}>
-              <h2>3. Listen to two colleagues and complete this dialogue</h2>
-            </Col>
-            <Col md={{ span: 8, offset: 2 }}>
-              <InputSentencesQuestions quizData={quizData1} />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md={{ span: 12 }}>
-              <h2>
-                4. Listen to two colleagues discussing software and complete
-                this dialogue.
-              </h2>
-            </Col>
-            <Col md={{ span: 8, offset: 2 }}>
-              <InputSentencesQuestions quizData={quizData2} />
-            </Col>
-          </Row>
-        </Container>
         <div className="wrapper">
           <Container>
             <Row>
-              <Col md={{ span: 12 }}>
-                <h2
-                  style={{
-                    color: "#65ddd9",
-                  }}
-                >
-                  5. Choose the best verb.
+              <Col xs={12}>
+                <h2 className="task__heading">
+                  1. Label the diagram with the correct items 1-11.
                 </h2>
+                <img className="img-fluid" src={pc} alt="PC"></img>
               </Col>
               <Col md={{ span: 8, offset: 2 }}>
-                <RadioQuestions quizData={quizData3} />
+                <SelectTask quizData={quizData} set={variables} />
               </Col>
             </Row>
           </Container>
@@ -668,19 +660,85 @@ function Lesson() {
           <Container>
             <Row>
               <Col md={{ span: 12 }}>
-                <h2
-                  style={{
-                    color: "#65ddd9",
-                  }}
-                >
+                <h2 className="task__heading">
+                  2. Listen to two colleagues and complete this dialogue
+                </h2>
+              </Col>
+              <Col md={{ span: 8, offset: 2 }}>
+                <InputTask quizData={quizData1} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="wrapper">
+          <Container>
+            <Row>
+              <Col md={{ span: 12 }}>
+                <h2 className="task__heading">
+                  3. Listen to two colleagues discussing software and complete
+                  this dialogue.
+                </h2>
+              </Col>
+              <Col md={{ span: 8, offset: 2 }}>
+                <InputTask quizData={quizData2} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="wrapper">
+          <Container>
+            <Row>
+              <Col md={{ span: 12 }}>
+                <h2 className="task__heading">4. Choose the best verb.</h2>
+              </Col>
+              <Col md={{ span: 8, offset: 2 }}>
+                <RadioTask quizData={quizData3} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="wrapper">
+          <Container>
+            <Row>
+              <Col md={{ span: 12 }}>
+                <h2 className="task__heading">
+                  5. Match the verbs with the nouns.
+                </h2>
+              </Col>
+              <Col md={{ span: 8, offset: 2 }}>
+                <MatchTask
+                  quizData={quizData4}
+                  set={variablesForSelectSentences}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="wrapper">
+          <Container>
+            <Row>
+              <Col md={{ span: 12 }}>
+                <h2 className="task__heading">
                   6. Match the verbs with the nouns.
                 </h2>
               </Col>
               <Col md={{ span: 8, offset: 2 }}>
-                <MatchSelect
+                <MatchTask
                   quizData={quizData5}
-                  set={variablesForSelectSentences}
+                  set={variablesForSelectSentences2}
                 />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="wrapper">
+          <Container>
+            <Row>
+              <Col md={{ span: 12 }}>
+                <h2 className="task__heading">6. Match the pictures.</h2>
+              </Col>
+              <Col md={{ span: 8, offset: 2 }}>
+                <MatchPictureTask quizData={quizData6} set={images} />
               </Col>
             </Row>
           </Container>

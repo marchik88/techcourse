@@ -3,20 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import { useForm, Controller } from "react-hook-form";
 import { Tooltip } from "../styled/Styled";
 
-const SelectQuestions = (props) => {
+const SelectTask = (props) => {
   const { quizData, set } = props;
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 100,
-    },
-  }));
-
-  const classes = useStyles();
 
   const { handleSubmit, errors, setValue, control } = useForm();
 
@@ -81,30 +72,9 @@ const SelectQuestions = (props) => {
     <form className="form selectForm" onSubmit={handleSubmit(onSubmit)}>
       {quizData.map((item, index) => {
         return (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginBottom: "5px",
-              flexWrap: "wrap",
-            }}
-          >
-            <div
-              style={{
-                marginRight: "1rem",
-                color: "#222",
-                minWidth: "1.25rem",
-              }}
-            >
-              {index + 1}
-            </div>
-            <FormControl
-              className={classes.formControl}
-              error={Boolean(errors[item.name])}
-              name={item.name}
-            >
+          <div className="selectForm__row" key={index}>
+            <div className="task__index">{index + 1}</div>
+            <FormControl error={Boolean(errors[item.name])} name={item.name}>
               <Controller
                 as={
                   <Select name={item.name}>
@@ -120,7 +90,9 @@ const SelectQuestions = (props) => {
                         </MenuItem>
                       );
                     })}
-                    <MenuItem value="">Сбросить</MenuItem>
+                    <MenuItem value="" style={{ background: "#ffc312" }}>
+                      Сбросить
+                    </MenuItem>
                   </Select>
                 }
                 control={control}
@@ -129,9 +101,6 @@ const SelectQuestions = (props) => {
                 defaultValue=""
                 onChange={([event]) => handleChange(event)}
               />
-              <FormHelperText>
-                {errors.wordlevel && errors.wordlevel.message}
-              </FormHelperText>
             </FormControl>
             {errors[item.name] && (
               <div className="answer__tooltip">Выберите ответ</div>
@@ -153,7 +122,7 @@ const SelectQuestions = (props) => {
               errors[quizData[i].name] = null;
             }
             setFormReady(false);
-            setSelected([]);
+            setAnswer({});
           }}
         >
           Сбросить
@@ -163,4 +132,4 @@ const SelectQuestions = (props) => {
   );
 };
 
-export default SelectQuestions;
+export default SelectTask;

@@ -41,6 +41,8 @@ const RadioTask = (props) => {
 
   const [answer, setAnswer] = useState({});
 
+  const [field, setField] = useState(false);
+
   const onSubmit = (data) => {
     setAnswer(data);
     setFormReady(true);
@@ -115,17 +117,24 @@ const RadioTask = (props) => {
                 {errors.wordlevel && errors.wordlevel.message}
               </FormHelperText>
             </FormControl>
-            {errors[item.name] && (
+            {/* {errors[item.name] && (
               <div className="answer__tooltip" style={{ textAlign: "left" }}>
                 Выберите ответ
               </div>
-            )}
+            )} */}
             {renderResult(item)}
           </div>
         );
       })}
+      {Object.keys(errors).length !== 0 && field && (
+        <div className="answer__tooltip">Заполните все поля</div>
+      )}
       <div className="multi-button">
-        <button className="buttonR" type="submit">
+        <button
+          className="buttonR"
+          type="submit"
+          onClick={() => setField(true)}
+        >
           Проверить
         </button>
         <button
@@ -138,6 +147,7 @@ const RadioTask = (props) => {
             }
             setFormReady(false);
             setAnswer({});
+            setField(false);
           }}
         >
           Сбросить

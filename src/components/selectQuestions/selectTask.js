@@ -15,6 +15,8 @@ const SelectTask = (props) => {
 
   const [answer, setAnswer] = useState({});
 
+  const [field, setField] = useState(false);
+
   const onSubmit = (data) => {
     setAnswer(data);
     setFormReady(true);
@@ -90,7 +92,7 @@ const SelectTask = (props) => {
                         </MenuItem>
                       );
                     })}
-                    <MenuItem value="" style={{ background: "#ffc312" }}>
+                    <MenuItem value={false} style={{ background: "#ffc312" }}>
                       Сбросить
                     </MenuItem>
                   </Select>
@@ -102,15 +104,22 @@ const SelectTask = (props) => {
                 onChange={([event]) => handleChange(event)}
               />
             </FormControl>
-            {errors[item.name] && (
+            {/* {errors[item.name] && (
               <div className="answer__tooltip">Выберите ответ</div>
-            )}
+            )} */}
             {renderResult(item)}
           </div>
         );
       })}
+      {Object.keys(errors).length !== 0 && field && (
+        <div className="answer__tooltip">Заполните все поля</div>
+      )}
       <div className="multi-button">
-        <button className="buttonR" type="submit">
+        <button
+          className="buttonR"
+          type="submit"
+          onClick={() => setField(true)}
+        >
           Проверить
         </button>
         <button
@@ -123,6 +132,7 @@ const SelectTask = (props) => {
             }
             setFormReady(false);
             setAnswer({});
+            setField(false);
           }}
         >
           Сбросить

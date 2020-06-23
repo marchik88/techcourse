@@ -23,6 +23,8 @@ const InputSentencesQuestions = (props) => {
 
   const [answer, setAnswer] = useState({});
 
+  const [field, setField] = useState(false);
+
   const onSubmit = (data) => {
     setAnswer(data);
     setFormReady(true);
@@ -130,18 +132,25 @@ const InputSentencesQuestions = (props) => {
                     ))
                   : null}
               </span>
-              {errors[item.name] && (
+              {/* {errors[item.name] && (
                 <div className="answer__tooltip">
                   Впишите ответ ({item.name})
                 </div>
-              )}
+              )} */}
               {renderResult(item)}
             </div>
           </div>
         );
       })}
+      {Object.keys(errors).length !== 0 && field && (
+        <div className="answer__tooltip">Заполните все поля</div>
+      )}
       <div className="multi-button">
-        <button className="buttonR" type="submit">
+        <button
+          className="buttonR"
+          type="submit"
+          onClick={() => setField(true)}
+        >
           Проверить
         </button>
         <button
@@ -154,6 +163,7 @@ const InputSentencesQuestions = (props) => {
             }
             setFormReady(false);
             setAnswer({});
+            setField(false);
           }}
         >
           Сбросить

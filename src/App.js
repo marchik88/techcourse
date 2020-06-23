@@ -1,6 +1,5 @@
 import React from "react";
 import Lesson1 from "./components/lessons/Lesson1";
-import Lesson2 from "./components/lessons/Lesson2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./styles/style.sass";
@@ -17,16 +16,10 @@ function App() {
             <li>
               <Link to="/lesson1">Lesson 1</Link>
             </li>
-            <li>
-              <Link to="/lesson2">Lesson 2</Link>
-            </li>
           </ul>
         </nav>
 
         <Switch>
-          <Route path="/lesson2">
-            <Lesson2 />
-          </Route>
           <Route path="/lesson1">
             <Lesson1 />
           </Route>

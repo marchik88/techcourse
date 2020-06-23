@@ -10,7 +10,7 @@ export const Tooltip = styled.p`
   > p {
     display: inline;
   }
-  /* width: 100%; */
+  width: 100%;
 `;
 
 export const SButton = styled(Button)`

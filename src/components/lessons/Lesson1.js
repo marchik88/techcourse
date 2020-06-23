@@ -609,6 +609,9 @@ function Lesson() {
     { src: "1.jpg", name: "1" },
     { src: "2.jpg", name: "2" },
     { src: "3.jpg", name: "3" },
+    { src: "3.jpg", name: "4" },
+    { src: "2.jpg", name: "5" },
+    { src: "1.jpg", name: "6" },
   ];
 
   const quizData6 = [
@@ -630,6 +633,30 @@ function Lesson() {
     },
     {
       name: "3",
+      beforeSelect: "dial",
+      afterSelect: "",
+      answer: "3",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "4",
+      beforeSelect: "dial",
+      afterSelect: "",
+      answer: "3",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "5",
+      beforeSelect: "dial",
+      afterSelect: "",
+      answer: "3",
+      selectedValue: "Select answer",
+      showAnswer: false,
+    },
+    {
+      name: "6",
       beforeSelect: "dial",
       afterSelect: "",
       answer: "3",

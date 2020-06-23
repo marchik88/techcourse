@@ -5,9 +5,12 @@ export const Tooltip = styled.p`
   font-size: 16px;
   margin: 0;
   color: ${(props) => (props.correct ? "rgb(18, 203, 163)" : "#ff767b")};
-  text-align: ${(props) => (props.left ? "left" : "center")};
+  text-align: ${(props) => (props.left ? "center" : "left")};
   font-family: "Inter", sans-serif;
-  width: 100%;
+  > p {
+    display: inline;
+  }
+  /* width: 100%; */
 `;
 
 export const SButton = styled(Button)`

@@ -39,8 +39,8 @@ const MatchTask = (props) => {
 
   const getNames = () => {
     const name = [];
-    for (var x = 0; x < set.length; x++) {
-      name.push(set[x].name);
+    for (let i = 0; i < set.length; i++) {
+      name.push(set[i].name);
     }
     return name;
   };
@@ -55,13 +55,33 @@ const MatchTask = (props) => {
     return value;
   };
 
-  console.log("set_______", set);
-
   const useStyles2 = makeStyles({
     root: {
-      color: "#ff767b !important",
-      opacity: 0.3,
       position: "relative",
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        left: "5%",
+        top: "50%",
+        display: "block",
+        height: "4px",
+        background: "#ff767b",
+        width: "90%",
+        transform: "rotate(45deg)",
+        zIndex: 10,
+      },
+      "&::after": {
+        content: '""',
+        position: "absolute",
+        right: "5%",
+        top: "50%",
+        display: "block",
+        height: "4px",
+        background: "#ff767b",
+        width: "90%",
+        transform: "rotate(-45deg)",
+        zIndex: 10,
+      },
     },
   });
 
@@ -110,14 +130,21 @@ const MatchTask = (props) => {
       <div className="box__items">
         {set.map((item, index) => {
           return (
-            <Box component="span" classes={neededClass(item)}>
-              <Box
-                component="img"
-                src={require(`../img/lesson1/${item.src}`)}
-                key={index}
-                alt={item}
-              ></Box>
-              {/* <Box component="div">{item.name}</Box> */}
+            <Box
+              component="span"
+              classes={neededClass(item)}
+              className="match__picture-box"
+              key={index}
+            >
+              <div>
+                <img
+                  src={require(`../img/lesson1/${item.src}`)}
+                  key={index}
+                  alt={item}
+                  className="img-fluid"
+                ></img>
+                <Box component="span">{item.name}</Box>
+              </div>
             </Box>
           );
         })}

@@ -6,39 +6,7 @@ body
   font-family: "Roboto", "Segoe UI", "Fira Sans", "Helvetica Neue", sans-serif
   background: #f8f9fa
   touch-action: manipulation
-  background: #334150
-.MuiSelect-selectMenu 
-  min-width: 120px !important
-.MuiSelect-select.MuiSelect-select 
-  text-align: left !important
-.MuiFormControl-root 
-  margin: 0 !important  
-  flex-grow: 1    
-  max-width: 414px
-.MuiSelect-select 
-  &.MuiSelect-select 
-    text-align: left !important
-    min-width: 100px !important
-.makeStyles-formControl-1
-  flex-grow: 1    
-.MuiInput-underline
-  &:before
-    border-color: #ffc312 !important
-  &:after
-    border-color: #65ddd9 !important   
-.inputForm .MuiInputBase-input
-  color: #ffc312 !important    
-.select__answer
-  width: 100%
-  &--right
-    color: green
-    // @include _768
-    //   color: yellow
-.answer
-  &__tooltip
-    width: 100%
-    font-size: 16px   
-    color: #ff767b  
+  background: #334150 
 .dialog
   font-size: 18px  
   margin: 5px 0 5px
@@ -92,7 +60,47 @@ body
     vertical-align: bottom !important
   .MuiInputBase-input
     height: 1rem !important
-// ___ styles for select task ___    
+// ___ styles for select task ___  
+.MuiSelect-selectMenu 
+  min-width: 120px !important
+.MuiSelect-select.MuiSelect-select 
+  text-align: left !important
+.MuiFormControl-root 
+  margin: 0 !important  
+  flex-grow: 1    
+  max-width: 414px
+.MuiSelect-select 
+  &.MuiSelect-select 
+    text-align: left !important
+    min-width: 100px !important
+.makeStyles-formControl-1
+  flex-grow: 1    
+.MuiInput-underline
+  &:before
+    border-color: #ffc312 !important
+  &:after
+    border-color: #65ddd9 !important   
+  &.Mui-error
+    &:after
+      border-color: #ff767b !important
+.MuiMenuItem-root
+  display: flex !important
+  min-height: 36px !important
+.MuiList-padding     
+  padding: 0 !important 
+.inputForm .MuiInputBase-input
+  color: #ffc312 !important    
+.select__answer
+  width: 100%
+  &--right
+    color: green
+    // @include _768
+    //   color: yellow
+.answer
+  &__tooltip
+    width: 100%
+    font-size: 16px   
+    color: #ff767b     
 .selectForm
   &__row
     display: flex
@@ -133,3 +141,14 @@ body
     text-align: left
     color: #fff
     margin: 0
+.match__picture-box
+  display: flex
+  align-items: center
+  max-width: 220px
+  margin: 5px
+  > div
+    position: relative
+  > div > span
+    position: absolute
+    left: 10px
+    color: #ff767b
